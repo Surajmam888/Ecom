@@ -45,7 +45,7 @@ const SingleProductPage = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ marginTop: "100px" }}>
+    <Container maxWidth="md" sx={{ marginTop: "100px",marginBottom: "100px" }}>
       {product ? (
         <Card sx={{display:"flex"}}>
           <Grid container spacing={3}>

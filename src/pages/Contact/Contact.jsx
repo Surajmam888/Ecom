@@ -12,49 +12,61 @@ const Contact = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ padding: '50px', marginTop: '100px', marginBottom:"100px", border:"1px solid black", borderRadius:"5px" }}>
-      <Box sx={{ textAlign: "center", padding: "20px" }}>
-        <Typography variant="h4">Contact Page</Typography>
+    <Container maxWidth="sm" sx={{ marginTop: '100px', marginBottom: "100px" }}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          border: "1px solid black",
+          padding: "20px",
+          borderRadius: "15px"
+        }}
+      >
+        <Box sx={{ textAlign: "center", padding: "20px" }}>
+          <Typography variant="h4">Contact Page</Typography>
+        </Box>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                required
+                label="Name"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                required
+                label="Email"
+                variant="outlined"
+                type="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Message"
+                multiline
+                rows={4}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
       </Box>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              required
-              label="Name"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              required
-              label="Email"
-              variant="outlined"
-              type="email"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Message"
-              multiline
-              rows={4}
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-            >
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
     </Container>
   );
 };
