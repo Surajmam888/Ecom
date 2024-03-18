@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Card, CardContent, CardActions, Button, Typography, Container, CardMedia, Grid, Divider } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  Typography,
+  Container,
+  CardMedia,
+  Grid,
+  Divider,
+  IconButton
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const SingleProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1); // State to manage quantity
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -20,47 +34,66 @@ const SingleProductPage = () => {
     fetchProduct();
   }, [id]);
 
-//   const discountedPrice = price - (price * discountPercentage) / 100;
-
   const handleAddToCart = () => {
     if (!product) {
       console.error("No product data available.");
       return;
     }
 
-    // Get existing cart items from local storage or initialize as an empty array
     const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-    // Check if the product is already in the cart
-    const isInCart = existingCartItems.find(item => item.id === product.id);
+    const existingItemIndex = existingCartItems.findIndex(item => item.id === product.id);
 
-    if (isInCart) {
-      console.log("Product is already in the cart.");
+    if (existingItemIndex !== -1) {
+      // If product is already in cart, update quantity
+      existingCartItems[existingItemIndex].quantity += quantity;
     } else {
-      // Add the product to the cart
-      const updatedCartItems = [...existingCartItems, { id: product.id, title: product.title }];
-      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-      console.log("Product added to cart:", product.id);
+      // If product is not in cart, add it with specified quantity
+      const discountedPrice = product.price - (product.price * product.discountPercentage) / 100;
+      existingCartItems.push({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        discountPercentage: product.discountPercentage,
+        discountedPrice: discountedPrice,
+        brand: product.brand,
+        image: product.images[0],
+        quantity: quantity // Use the specified quantity
+      });
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
+    console.log("Product added to cart:", product.id);
+  };
+
+  const handleQuantityIncrease = () => {
+    setQuantity(prevQuantity => prevQuantity + 1);
+  };
+
+  const handleQuantityDecrease = () => {
+    if (quantity > 1) {
+      setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
 
+  const discountedPrice = product ? product.price - (product.price * product.discountPercentage) / 100 : null;
+
   return (
-    <Container maxWidth="md" sx={{ marginTop: "100px",marginBottom: "100px" }}>
+    <Container maxWidth="md" sx={{ marginTop: "100px", marginBottom: "100px" }}>
       {product ? (
-        <Card sx={{display:"flex"}}>
+        <Card sx={{ display: "flex" }}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <CardMedia
                 component="img"
                 image={product.images[0]}
                 alt={product.title}
-                sx={{ height: '260px', width: 'auto',padding:"15px" }}
+                sx={{ height: '260px', width: 'auto', padding: "15px" }}
               />
             </Grid>
-            {/* <Divider sx={{border:"1px solid black"}}/> */}
             <Grid item xs={12} sm={6}>
               <CardContent>
-                <Typography variant="h5" component="div">
+                <Typography variant="h5" color="textSecondary">
                   {product.title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -73,11 +106,25 @@ const SingleProductPage = () => {
                   Discount: {product.discountPercentage}%
                 </Typography>
                 <Typography variant="h6" color="secondary">
-                  Discounted Price: ${product.discountedPrice?.toFixed(2)}
+                  Discounted Price: ${discountedPrice?.toFixed(2)}
                 </Typography>
-                <Typography variant="h4" color="textSecondary">
+                <Typography variant="h5" color="textSecondary">
                   Brand: {product.brand}
                 </Typography>
+                <Grid container alignItems="center" mt={2}>
+                  <Typography variant="subtitle1" mr={2}>
+                    Quantity:
+                  </Typography>
+                  <IconButton onClick={handleQuantityDecrease}>
+                    <RemoveIcon />
+                  </IconButton>
+                  <Typography variant="subtitle1">
+                    {quantity}
+                  </Typography>
+                  <IconButton onClick={handleQuantityIncrease}>
+                    <AddIcon />
+                  </IconButton>
+                </Grid>
               </CardContent>
               <CardActions>
                 <Button variant="outlined" onClick={handleAddToCart}>Add to Cart</Button>
@@ -93,3 +140,5 @@ const SingleProductPage = () => {
 };
 
 export default SingleProductPage;
+
+
