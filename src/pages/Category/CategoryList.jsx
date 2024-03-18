@@ -29,7 +29,7 @@ const CategoryList = () => {
     };
 
     return (
-        <Box sx={{ flexGrow: 1, paddingTop: "100px", paddingBottom: "100px" }}>
+        <Box sx={{ flexGrow: 1, paddingTop: "100px", paddingBottom: "100px",borderRadius:"50%" }}>
             <Typography sx={{ textAlign: "center" }}>Top Rated Category</Typography>
             <Grid container spacing={2}>
                 {categories.map((category, index) => (

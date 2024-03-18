@@ -22,7 +22,7 @@ const Homepage = () => {
         {/* <ProductPage /> */}
         {/* <CartPage/> */}
         {/* <About/> */}
-        <CategoryList/>
+        {/* <CategoryList/> */}
         {/* <SubcategoryList/> */}
         <Products/>
         {/* <Contact/> */}
