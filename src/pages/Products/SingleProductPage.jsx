@@ -88,7 +88,7 @@ const SingleProductPage = () => {
                 component="img"
                 image={product.images[0]}
                 alt={product.title}
-                sx={{ height: '260px', width: 'auto', padding: "15px" }}
+                sx={{ height: '200px', width: 'auto', padding: "15px" }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
