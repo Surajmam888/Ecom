@@ -14,7 +14,6 @@ const Products = () => {
       try {
         const response = await axios.get("https://dummyjson.com/products");
 
-        // Assuming the API response has a property named 'products'
         const responseData = response.data.products;
 
         if (Array.isArray(responseData)) {
@@ -32,6 +31,7 @@ const Products = () => {
   }, []);
 
   return (
+    <Container>
     <Box sx={{padding:"20px",marginBottom:"80px"}}>
       <Box sx={{textAlign:"center", padding:"20px"}}><Typography variant="h4">Product Page</Typography></Box>
       <Grid container spacing={3}>
@@ -44,6 +44,7 @@ const Products = () => {
       )}
     </Grid>
     </Box>
+    </Container>
   );
 };
 

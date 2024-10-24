@@ -42,7 +42,7 @@ const Category = () => {
       </Box>
 
       {/* Render section for each category */}
-      <Box>
+      <Box> 
         <Typography variant="h5" component="div">
           Mobiles
         </Typography>
@@ -53,7 +53,7 @@ const Category = () => {
           ))}
         </Grid>
       </Box>
-      <Box>
+      <Box sx={{marginTop:"30px"}}>
         <Typography variant="h5" component="div">
           Laptops
         </Typography>

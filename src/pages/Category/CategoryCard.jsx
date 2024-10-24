@@ -7,7 +7,9 @@ const cardStyle = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  height: '100%',
+  height: 'auto',
+  borderRadius:"50%",
+  textAlign:"center",
 };
 
 const mediaStyle = {

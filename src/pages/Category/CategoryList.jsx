@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CategoryCard from './CategoryCard';
-import SubcategoryList from './SubcategoryList'; // Import SubcategoryList component
-import { Box, Grid, Typography } from '@mui/material';
+import SubcategoryList from './SubcategoryList';
+import { Box, Container, Grid, Typography } from '@mui/material';
 
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);
@@ -29,7 +29,7 @@ const CategoryList = () => {
     };
 
     return (
-        <Box sx={{ flexGrow: 1, paddingTop: "100px", paddingBottom: "100px",borderRadius:"50%" }}>
+        <Container><Box sx={{ flexGrow: 1, paddingTop: "100px", paddingBottom: "100px" }}>
             <Typography sx={{ textAlign: "center" }}>Top Rated Category</Typography>
             <Grid container spacing={2}>
                 {categories.map((category, index) => (
@@ -46,6 +46,7 @@ const CategoryList = () => {
             </Grid>
             {selectedCategory && <SubcategoryList category={selectedCategory} />}
         </Box>
+        </Container>
     );
 };
 

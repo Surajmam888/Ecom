@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Box } from '@mui/material';
+
 import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
 import Homepage from './pages/Homepage';
@@ -6,7 +8,6 @@ import About from './pages/About/About';
 import Service from './pages/Service/Service';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
-import { Box, Container } from '@mui/material';
 import ForgotPassword from './pages/Login/ForgotPassword';
 import SingleProductPage from './pages/Products/SingleProductPage';
 import Products from './pages/Products/Products';

@@ -5,7 +5,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import TotalProduct from "./TotalProduct";
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]); 
 
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -74,12 +74,12 @@ const CartPage = () => {
                       <Typography variant="subtitle1">
                         Quantity: {item.quantity}
                       </Typography>
-                      <IconButton onClick={() => handleQuantityDecrease(item.id)}>
+                      {/* <IconButton onClick={() => handleQuantityDecrease(item.id)}>
                         <RemoveIcon />
                       </IconButton>
                       <IconButton onClick={() => handleQuantityIncrease(item.id)}>
                         <AddIcon />
-                      </IconButton>
+                      </IconButton> */}
                     </CardContent>
                     <Divider />
                     <CardContent>

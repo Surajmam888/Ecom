@@ -25,7 +25,7 @@ const SubcategoryList = () => {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1,paddingBottom:"100px" }}>
+    <Box sx={{ flexGrow: 1,paddingBottom:"100px",paddingTop:"50px",textAlign:"center"}}>
       <Typography sx={{textAlign:"center"}}>SubCategory</Typography>
       {loading ? (
         <CircularProgress />
@@ -34,8 +34,7 @@ const SubcategoryList = () => {
           {products.map((product) => (
             <Grid item xs={12} sm={4} md={3} lg={2} key={product.id}>
               <CategoryCard
-                title={product.title}
-                // Assuming there's a field for image URL in the API response
+                title={product.title.slice(0,8)}
                 image={product.image}
                 id={product.id} 
               />
