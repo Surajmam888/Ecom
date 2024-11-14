@@ -122,7 +122,7 @@ function Header() {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <Link to={"/"}><AdbIcon sx={{ display: { xs: "flex", md: "none", color:"#fff" }, mr: 1 }} /></Link>
             <Typography
               variant="h5"
               noWrap
